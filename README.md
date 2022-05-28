@@ -26,7 +26,7 @@ Use `python create_traffic_npz.py` to merge the orginal data, then combine them 
 
 Use `python create_incident_npz.py` to merge the accident data.
 
-Before you run this code, you need download the accident data from the PEMS CHP Incident system, Just like \Tustin\incident.xlsx.
+Before you run this code, you need download the accident data from the PEMS CHP Incident system, Just like PEMS_Dataset_Process/Tustin/22-01-01_22-01-07/incident/incident.xlsx.
 
 ## Combine  PEMS dataset with Accident data
 
