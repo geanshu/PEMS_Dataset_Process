@@ -21,3 +21,13 @@ Use `python download_vds_data.py` to download the original data of vds.
 ## Create PEMS dataset
 
 Use `python create_traffic_npz.py` to merge the orginal data, then combine them to `.npz` dataset just like PEMSD4/PEMSD8.
+
+## Create Accident dataset
+
+Use `python create_incident_npz.py` to merge the accident data.
+
+Before you run this code, you need download the accident data from the PEMS CHP Incident system, Just like \Tustin\incident.xlsx.
+
+## Combine  PEMS dataset with Accident data
+
+Use `python create_PEMS_npz.py` to combine PEMS dataset with Accident data. Then you could get a PEMS dataset with accident.
