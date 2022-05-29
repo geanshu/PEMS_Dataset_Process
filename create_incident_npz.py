@@ -1,10 +1,9 @@
 import numpy as np
 import pandas as pd
 import datetime
-import copy
 
-city = 'Tustin'
-start_time, end_time = '2022-01-01 00:00', '2022-01-21 23:59'  # 数据下载开始于结束时间
+city = 'Orange'
+start_time, end_time = '2022-01-01 00:00', '2022-01-28 23:59'  # 数据下载开始于结束时间
 time_str = start_time[2:10] + '_' + end_time[2:10]
 
 save_path = r'./%s/' % city  # 文件保存路径
@@ -46,15 +45,15 @@ def create_incident_npz(path=save_path):
         columns=['District', 'County', 'City', 'CA PM', 'Length', 'Name', 'Lanes', 'Sensor Type', 'HOV', 'MS ID',
                  'IRM', 'Type'])
 
-    data = np.zeros([len(vds_list), int(3 * 7 * 24 * 60 / 5), 1], dtype=np.float64)
+    data = np.zeros([len(vds_list), int(4 * 7 * 24 * 60 / 5), 1], dtype=np.float64)
 
     for (Fwy, sensor) in info.groupby('Fwy'):
         incident = pd.read_excel(path + '%s.xlsx' % Fwy, index_col=None, names=None)
         for row in incident.itertuples():
             Abs_PM = getattr(row, '_3')
-            if Fwy[-1] == 'N':
+            if Fwy[-1] == 'N' or Fwy[-1] == 'E':
                 sensor['len'] = sensor['Abs PM'].apply(lambda x: x - Abs_PM)
-            elif Fwy[-1] == 'S':
+            elif Fwy[-1] == 'S' or Fwy[-1] == 'W':
                 sensor['len'] = sensor['Abs PM'].apply(lambda x: Abs_PM - x)
             if len(sensor[sensor.len >= 0]) > 0:
                 idx = sensor[sensor.len >= 0]['len'].argmin()
