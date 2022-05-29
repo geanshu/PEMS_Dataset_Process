@@ -1,7 +1,7 @@
 import numpy as np
 
-city = 'Tustin'
-start_time, end_time = '2022-01-01 00:00', '2022-01-21 23:59'  # 数据下载开始于结束时间，每次下载一周，无数据则下载为空文件
+city = 'Orange'
+start_time, end_time = '2022-01-01 00:00', '2022-01-28 23:59'  # 数据下载开始于结束时间，每次下载一周，无数据则下载为空文件
 time_str = start_time[2:10] + '_' + end_time[2:10]
 
 save_path = r'./%s/' % city  # 文件保存路径

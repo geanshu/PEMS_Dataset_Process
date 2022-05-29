@@ -1,9 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-# @Time    : 2019/11/14 21:23
-# @Author  : Chenchen Wei
-# @Description: 下载PeMS流量数据，一次下载一周数据
-
 import time
 import os
 import numpy as np
@@ -11,7 +5,7 @@ import requests
 from retrying import retry
 
 city = 'Orange'
-start_time, end_time = '2022-01-08 00:00', '2022-01-14 23:59'  # 数据下载开始于结束时间，每次下载一周，无数据则下载为空文件
+start_time, end_time = '2022-01-01 00:00', '2022-01-07 23:59'  # 数据下载开始于结束时间，每次下载一周，无数据则下载为空文件
 time_str = start_time[2:10] + '_' + end_time[2:10]
 
 save_path = r'./%s/' % city  # 文件保存路径
@@ -52,7 +46,7 @@ def download_data(path, url, i, type):
     print('开始下载')
     response = session.post('https://pems.dot.ca.gov/', headers=headers, data=data)
     response = session.get(url)
-    with open(path + '%s_%s.xlsx' % (vds, type), 'wb') as f:
+    with open(path + '%s_%s.xlsx' % (i, type), 'wb') as f:
         f.write(response.content)
         print('下载成功')
 
@@ -74,8 +68,7 @@ def get_url(vds, begin, type='flow'):
 
 
 if __name__ == '__main__':
-
-    for vds in vds_list[23:]:
+    for vds in vds_list[61:62]:
         save_paths = save_path + '/%s/' % str(vds)  # 创建文件保存路径
         if not os.path.exists(save_paths):
             os.makedirs(save_paths)

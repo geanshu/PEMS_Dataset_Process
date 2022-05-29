@@ -3,8 +3,8 @@ import pandas as pd
 import os
 import sys
 
-city = 'Tustin'
-start_time, end_time = '2022-01-01 00:00', '2022-01-21 23:59'  # 数据下载开始于结束时间
+city = 'Orange'
+start_time, end_time = '2022-01-01 00:00', '2022-01-28 23:59'  # 数据下载开始于结束时间
 time_str = start_time[2:10] + '_' + end_time[2:10]
 
 save_path = r'./%s/' % city  # 文件保存路径
